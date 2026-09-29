@@ -1,0 +1,465 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    background: #050817;
+    color: white;
+}
+
+/* =====================================
+   GAME
+===================================== */
+
+.game {
+    position: relative;
+
+    width: 100vw;
+    height: 100vh;
+
+    overflow: hidden;
+}
+
+/* =====================================
+   BACKGROUND
+===================================== */
+
+.background {
+    position: absolute;
+
+    inset: 0;
+
+    background-image:
+        linear-gradient(
+            rgba(4, 6, 25, 0.25),
+            rgba(4, 6, 25, 0.45)
+        ),
+        url("foto/background.jpg");
+
+    background-size: cover;
+    background-position: center;
+
+    z-index: 0;
+}
+
+/* =====================================
+   BINTANG
+===================================== */
+
+.star-layer {
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+}
+
+.star-layer img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0.8;
+
+    animation: starsMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes starsMove {
+
+    from {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+
+    to {
+        opacity: 0.9;
+        transform: scale(1.03);
+    }
+}
+
+/* =====================================
+   BULAN
+===================================== */
+
+.moon {
+    position: absolute;
+
+    top: 7%;
+    right: 10%;
+
+    width: 190px;
+    height: 190px;
+
+    object-fit: contain;
+
+    z-index: 2;
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(255, 248, 190, 0.8)
+        )
+        drop-shadow(
+            0 0 60px rgba(255, 248, 190, 0.4)
+        );
+
+    animation: moonFloat 5s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* =====================================
+   JUDUL
+===================================== */
+
+.game-title {
+    position: absolute;
+
+    top: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 5;
+
+    font-size: 25px;
+
+    letter-spacing: 6px;
+
+    color: #fff4c2;
+
+    text-shadow:
+        0 0 10px rgba(255, 235, 150, 0.8),
+        0 0 30px rgba(255, 235, 150, 0.4);
+}
+
+/* =====================================
+   SCENE TITLE
+===================================== */
+
+.scene-title {
+    position: absolute;
+
+    top: 80px;
+    left: 35px;
+
+    z-index: 5;
+
+    font-size: 17px;
+
+    letter-spacing: 3px;
+
+    color: #e2e6ff;
+}
+
+/* =====================================
+   CHARACTER
+===================================== */
+
+.character {
+    position: absolute;
+
+    z-index: 3;
+
+    left: 50%;
+    bottom: 260px;
+
+    transform: translateX(-50%);
+
+    width: 330px;
+    height: 390px;
+
+    display: flex;
+
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.character img {
+    max-width: 100%;
+    max-height: 100%;
+
+    object-fit: contain;
+
+    filter:
+        drop-shadow(
+            0 10px 20px rgba(0, 0, 0, 0.5)
+        );
+
+    animation: characterAppear 0.5s ease;
+}
+
+@keyframes characterAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================================
+   DIALOGUE CONTAINER
+===================================== */
+
+.dialogue-container {
+    position: absolute;
+
+    z-index: 10;
+
+    left: 50%;
+    bottom: 35px;
+
+    transform: translateX(-50%);
+
+    width: min(900px, 92%);
+}
+
+/* =====================================
+   NAMA KARAKTER
+===================================== */
+
+.character-name {
+    display: inline-block;
+
+    margin-left: 20px;
+
+    padding: 8px 25px;
+
+    border-radius: 12px 12px 0 0;
+
+    background: rgba(25, 29, 70, 0.95);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    border-bottom: none;
+
+    font-size: 19px;
+    font-weight: bold;
+
+    color: #fff3bb;
+
+    text-shadow:
+        0 0 10px rgba(255,230,140,0.5);
+}
+
+/* =====================================
+   KOTAK DIALOG
+===================================== */
+
+.dialogue-box {
+    min-height: 170px;
+
+    padding: 25px 28px;
+
+    border-radius: 0 18px 18px 18px;
+
+    background:
+        rgba(5, 8, 30, 0.92);
+
+    border: 1px solid rgba(255,255,255,0.2);
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,0.6);
+
+    backdrop-filter: blur(8px);
+}
+
+#dialogue {
+    min-height: 55px;
+
+    font-size: 19px;
+
+    line-height: 1.6;
+
+    color: #f4f5ff;
+}
+
+/* =====================================
+   PILIHAN
+===================================== */
+
+.choices {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.choice-button {
+    width: 100%;
+
+    padding: 12px 18px;
+
+    border: 1px solid
+        rgba(190, 200, 255, 0.4);
+
+    border-radius: 10px;
+
+    background:
+        rgba(100, 120, 200, 0.15);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.choice-button:hover {
+    background:
+        rgba(150, 170, 255, 0.3);
+
+    border-color:
+        rgba(255,255,255,0.8);
+
+    transform: translateY(-2px);
+}
+
+/* =====================================
+   NEXT BUTTON
+===================================== */
+
+.next-button {
+    display: block;
+
+    margin:
+        18px 0 0 auto;
+
+    padding:
+        10px 24px;
+
+    border: none;
+
+    border-radius: 20px;
+
+    background: #e4dcff;
+
+    color: #171936;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.next-button:hover {
+    background: white;
+
+    transform: scale(1.05);
+
+    box-shadow:
+        0 0 20px
+        rgba(255,255,255,0.5);
+}
+
+/* =====================================
+   FOOTER
+===================================== */
+
+.footer {
+    position: absolute;
+
+    z-index: 10;
+
+    bottom: 8px;
+    right: 15px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color:
+        rgba(255,255,255,0.45);
+}
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 600px) {
+
+    .game-title {
+        font-size: 17px;
+        letter-spacing: 3px;
+    }
+
+    .scene-title {
+        top: 65px;
+        left: 20px;
+
+        font-size: 13px;
+    }
+
+    .moon {
+        width: 120px;
+        height: 120px;
+
+        right: 6%;
+    }
+
+    .character {
+        width: 240px;
+        height: 300px;
+
+        bottom: 280px;
+    }
+
+    .dialogue-container {
+        bottom: 20px;
+
+        width: 94%;
+    }
+
+    .dialogue-box {
+        padding: 20px;
+    }
+
+    #dialogue {
+        font-size: 16px;
+    }
+
+    .character-name {
+        font-size: 16px;
+    }
+}
